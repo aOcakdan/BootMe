@@ -1,10 +1,23 @@
 <!doctype html>
 <html lang="en"><?php include "vendor/autoload.php";
-
+session_start();
+if(isset($_GET["cikis"])){
+    user::logout();
+}
 if(isset($_POST["username"])){
     $state = user::login($_POST["username"], $_POST["password"]);
-    switch ($state){
 
+    if($state === true){
+        $message = "Giriş başarılı";
+    }else {
+        switch ($state) {
+            case "passErr":
+                $message = "Şifre Yanlış";
+                break;
+            case "noUser":
+                $message = "Kullanıcı Bulunamadı";
+                break;
+        }
     }
 }
 ?>
@@ -78,7 +91,60 @@ if(isset($_POST["username"])){
 </header>
 
 <!-- FEATURES SECTİON -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Giriş Yap</h2>
 
+                <div class="d-flex flex-row">
+                    <div class="p-2">
+                        <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                    </div>
+                    <div class="p-2">
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                    </div>
+                    <div class="p-2">
+                        <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <?php
+                if(isset($message)) echo "<p>". $message. "</p>";
+                if(!user::checkLogin()) {
+                ?>
+                <form method="post">
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input name="username" class="form-control" type="text" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            <input name="password" class="form-control" type="password" placeholder="Şifre">
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Giriş Yap" class="btn btn-primary btn-block">
+                </form>
+
+                <?php }else{
+                    ?>
+                    <a class="btn btn-danger" href="?cikis">Çıkış Yap</a>
+                <?php
+
+                } ?>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="features" class="pt-5">
     <div class="container">
        <div class="row mt-5">
