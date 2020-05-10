@@ -27,7 +27,9 @@ class user
     }
     static function getCurrentUser(){
         return $_SESSION["user"];
-
+    }
+    static function getCurrentUserData($data){
+        return self::getData(self::getCurrentUser(), $data);
     }
     static function checkLogin(){
         return isset($_SESSION["user"]);

@@ -137,6 +137,7 @@ if(isset($_POST["username"])){
 
                 <?php }else{
                     ?>
+                    <p>Hoş geldin <?=user::getCurrentUserData("name")?></p>
                     <a class="btn btn-danger" href="?cikis">Çıkış Yap</a>
                 <?php
 
