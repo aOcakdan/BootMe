@@ -1,0 +1,23 @@
+{
+  "name": "aOcakdan/BootMe",
+  "description": "Proje",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Alptekin Ocakdan",
+      "email": "laughmanlj@gmail.com"
+    }
+  ],
+  "require": {
+    
+  },
+  "autoload": {
+    "classmap": [
+      "modules/"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
